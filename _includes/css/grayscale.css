@@ -31,7 +31,7 @@ h6 {
 
 p {
     margin: 0 0 25px;
-    font-size: 18px;
+    font-size: 25px;
     line-height: 1.5;
 }
 
@@ -78,7 +78,7 @@ a:focus {
 
 .navbar-custom .navbar-brand .navbar-toggle {
     padding: 4px 6px;
-    font-size: 16px;
+    font-size: 20px;
     color: #fff;
 }
 
@@ -155,7 +155,7 @@ a:focus {
 }
 
 .intro .intro-body .intro-text {
-    font-size: 18px;
+    font-size: 25px;
 }
 
 @media(min-width:767px) {
