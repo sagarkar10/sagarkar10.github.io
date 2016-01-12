@@ -6,4 +6,4 @@ Jekyll theme based on [Grayscale bootstrap theme ](http://ironsummitmedia.github
 
 For more details, read the [documentation](http://jekyllrb.com/)
 
-Feel free to fork and use it anywhere.
+Feel free to fork and use it anywhere, and report bugs
