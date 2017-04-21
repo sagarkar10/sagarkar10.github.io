@@ -289,7 +289,7 @@
 				},
 				success: function() {
 					contactForm.find('.contact-loading').fadeOut();
-					contactForm.find('.contact-success').find('.message').html('Success! Thanks for contacting us!');
+					contactForm.find('.contact-success').find('.message').html('Success! Thank you for contacting me, Will get back to you shortly!');
 					contactForm.find('.contact-success').fadeIn();
 				},
 				error: function() {
