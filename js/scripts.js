@@ -287,16 +287,25 @@
 					contact_email: contactForm.find('.contact-email').val(),
 					contact_message: contactForm.find('.contact-message').val()
 				},
-				success: function() {
+				complete: function(response) {
+                    console.log(response);
+                    if ((response.status==0) || (response.status==200)){
 					contactForm.find('.contact-loading').fadeOut();
-					contactForm.find('.contact-success').find('.message').html('Success! Thank you for contacting me, Will get back to you shortly!');
+					contactForm.find('.contact-success').find('.message').html('Success! Thanks for contacting me!');
 					contactForm.find('.contact-success').fadeIn();
-				},
-				error: function() {
+				    }
+                    else {
 					contactForm.find('.contact-loading').fadeOut();
 					contactForm.find('.contact-error').find('.message').html('Sorry, an error occurred.');
 					contactForm.find('.contact-error').fadeIn();
-				}
+                    }
+                }
+				/*error: function(response) {
+                    alert(response.status)
+					contactForm.find('.contact-loading').fadeOut();
+					contactForm.find('.contact-error').find('.message').html('Sorry, an error occurred.');
+					contactForm.find('.contact-error').fadeIn();
+				}*/
 			});
 		} else if (!validateEmail(contactForm.find('.contact-email').val()) && contactForm.find('.contact-email').val().length !== 0 && contactForm.find('.contact-name').val().length !== 0 && contactForm.find('.contact-message').val().length !== 0) {
 			contactForm.find('.contact-error').fadeOut();
@@ -314,7 +323,7 @@
 		return false;
 	});
 
-	/*==========  Map  ==========*/
+	/*==========  Map  ==========
 	var map;
 	function initialize_map() {
 		if ($('.map').length) {
@@ -341,5 +350,7 @@
 		}
 	}
 	google.maps.event.addDomListener(window, 'load', initialize_map);
+
+*/
 
 })(jQuery);
