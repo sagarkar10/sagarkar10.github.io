@@ -271,59 +271,58 @@
 	}
 	
 	/*==========  Contact Form  ==========*/
-	$('.contact-form').on('submit', function() {
-		var contactForm = $(this);
-		contactForm.find('.contact-error').fadeOut();
-		contactForm.find('.contact-success').fadeOut();
-		contactForm.find('.contact-loading').fadeOut();
-		contactForm.find('.contact-loading').fadeIn();
-		if (validateEmail(contactForm.find('.contact-email').val()) && contactForm.find('.contact-email').val().length !== 0 && contactForm.find('.contact-name').val().length !== 0 && contactForm.find('.contact-message').val().length !== 0) {
-			var action = contactForm.attr('action');
-			$.ajax({
-				type: "POST",
-				url : action,
-				data: {
-					contact_name: contactForm.find('.contact-name').val(),
-					contact_email: contactForm.find('.contact-email').val(),
-					contact_message: contactForm.find('.contact-message').val()
-				},
-				complete: function(response) {
-                    console.log(response);
-                    if ((response.status==0) || (response.status==200)){
-					contactForm.find('.contact-loading').fadeOut();
-					contactForm.find('.contact-success').find('.message').html('Success! Thanks for contacting me!');
-					contactForm.find('.contact-success').fadeIn();
-				    }
-                    else {
-					contactForm.find('.contact-loading').fadeOut();
-					contactForm.find('.contact-error').find('.message').html('Sorry, an error occurred.');
-					contactForm.find('.contact-error').fadeIn();
-                    }
+        $('.contact-form').on('submit', function() {
+                var contactForm = $(this);
+                contactForm.find('.contact-error').fadeOut();
+                contactForm.find('.contact-success').fadeOut();
+                contactForm.find('.contact-loading').fadeOut();
+                contactForm.find('.contact-loading').fadeIn();
+                if (validateEmail(contactForm.find('.contact-email').val()) && contactForm.find('.contact-email').val().length !== 0 && contactForm.find('.contact-name').val().length !== 0 && contactForm.find('.contact-message').val().length !== 0) {
+                    var action = contactForm.attr('action');
+                    $.ajax({
+                        type: "POST",
+                        url : action,
+                        data: {
+                            contact_name: contactForm.find('.contact-name').val(),
+                            contact_email: contactForm.find('.contact-email').val(),
+                            contact_message: contactForm.find('.contact-message').val()
+                        },
+                        complete: function(response) {
+                            console.log(response);
+                            if ((response.status==0) || (response.status==200)){
+                            contactForm.find('.contact-loading').fadeOut();
+                            contactForm.find('.contact-success').find('.message').html('Success! Thanks for contacting me!');
+                            contactForm.find('.contact-success').fadeIn();
+                            }
+                            else {
+                            contactForm.find('.contact-loading').fadeOut();
+                            contactForm.find('.contact-error').find('.message').html('Sorry, an error occurred.');
+                            contactForm.find('.contact-error').fadeIn();
+                            }
+                        }
+                        /*error: function(response) {
+                            alert(response.status)
+                            contactForm.find('.contact-loading').fadeOut();
+                            contactForm.find('.contact-error').find('.message').html('Sorry, an error occurred.');
+                            contactForm.find('.contact-error').fadeIn();
+                        }*/
+                    });
+                } else if (!validateEmail(contactForm.find('.contact-email').val()) && contactForm.find('.contact-email').val().length !== 0 && contactForm.find('.contact-name').val().length !== 0 && contactForm.find('.contact-message').val().length !== 0) {
+                    contactForm.find('.contact-error').fadeOut();
+                    contactForm.find('.contact-success').fadeOut();
+                    contactForm.find('.contact-loading').fadeOut();
+                    contactForm.find('.contact-error').find('.message').html('Please enter a valid email.');
+                    contactForm.find('.contact-error').fadeIn();
+                } else {
+                    contactForm.find('.contact-error').fadeOut();
+                    contactForm.find('.contact-success').fadeOut();
+                    contactForm.find('.contact-loading').fadeOut();
+                    contactForm.find('.contact-error').find('.message').html('Please fill out all the fields.');
+                    contactForm.find('.contact-error').fadeIn();
                 }
-				/*error: function(response) {
-                    alert(response.status)
-					contactForm.find('.contact-loading').fadeOut();
-					contactForm.find('.contact-error').find('.message').html('Sorry, an error occurred.');
-					contactForm.find('.contact-error').fadeIn();
-				}*/
-			});
-		} else if (!validateEmail(contactForm.find('.contact-email').val()) && contactForm.find('.contact-email').val().length !== 0 && contactForm.find('.contact-name').val().length !== 0 && contactForm.find('.contact-message').val().length !== 0) {
-			contactForm.find('.contact-error').fadeOut();
-			contactForm.find('.contact-success').fadeOut();
-			contactForm.find('.contact-loading').fadeOut();
-			contactForm.find('.contact-error').find('.message').html('Please enter a valid email.');
-			contactForm.find('.contact-error').fadeIn();
-		} else {
-			contactForm.find('.contact-error').fadeOut();
-			contactForm.find('.contact-success').fadeOut();
-			contactForm.find('.contact-loading').fadeOut();
-			contactForm.find('.contact-error').find('.message').html('Please fill out all the fields.');
-			contactForm.find('.contact-error').fadeIn();
-		}
-		return false;
-	});
-
-	/*==========  Map  ==========
+                return false;
+            });
+	/*==========  Map  ==========*/
 	var map;
 	function initialize_map() {
 		if ($('.map').length) {
@@ -350,7 +349,5 @@
 		}
 	}
 	google.maps.event.addDomListener(window, 'load', initialize_map);
-
-*/
 
 })(jQuery);
