@@ -27,8 +27,9 @@ var talk_to_me_about = [
     "Life",
     "Hacks"
 ]
+ttma = talk_to_me_about.map(x=> "Talk to me about <b>"+ String(x) +"</b>^500")
 var options2= {
-    strings: talk_to_me_about.map(x=> "Talk to me about <b>"+ String(x) +"</b> ^500"),
+    strings: ttma,
     typeSpeed: 50,
     shuffle: true,
     backSpeed: 100,
