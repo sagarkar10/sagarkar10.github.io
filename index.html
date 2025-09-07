@@ -38,6 +38,12 @@
 
 <body>
 
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fa fa-sun-o light-icon"></i>
+        <i class="fa fa-moon-o dark-icon"></i>
+    </button>
+
     <!-- Search -->
     <div class="search-overlay"></div>
     <div class="search">
@@ -899,6 +905,61 @@
     <script src="js/scripts.js"></script>
     <script src="js/typewriter.js"></script>
     <script src="js/plotly.js"></script>
+    
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        // Dark mode functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to 'light'
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', savedTheme);
+        
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Add a nice transition effect
+            body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+            setTimeout(() => {
+                body.style.transition = '';
+            }, 300);
+        });
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add animation classes to various elements
+            const animatedElements = document.querySelectorAll('.icon-box, .experience-block, .button');
+            animatedElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('animate-fadeInUp');
+                }, index * 100);
+            });
+        });
+    </script>
 
     <!-- uncommnet to chose cholor scheme
     <script src="js/picker.js"></script>
